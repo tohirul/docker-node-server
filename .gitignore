@@ -1,0 +1,10 @@
+# Ignore dependencies - rebuilt inside container
+node_modules
+
+
+# Optional: Ignore editor configs and logs
+.vscode
+*.log
+npm-debug.log
+yarn-error.log
+.env

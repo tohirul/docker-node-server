@@ -17,7 +17,6 @@
     "docker-compose.yml",
     "yarn.lock"
   ],
-  "exec": "node index.js",
   "delay": "100",
   "env": {
     "NODE_ENV": "development",

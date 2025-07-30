@@ -8,3 +8,10 @@ node_modules
 npm-debug.log
 yarn-error.log
 .env
+
+
+# Ignore Docker-related files
+project_backups/
+logs/
+.DS_Store
+*.tar.gz

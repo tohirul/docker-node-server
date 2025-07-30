@@ -1,0 +1,7 @@
+services:
+  backup:
+    image: alpine
+    container_name: docker-backup
+    volumes:
+      - .:/backup:z
+    command: tar czf /backup/project-backup.tar.gz /backup

@@ -12,25 +12,7 @@ services:
     ports:
       - "${LOCAL_PORT:-5000}:${CONTAINER_PORT:-5000}"
     volumes:
-      - .:/app:ro,z
       - /app/node_modules
     environment:
       - NODE_ENV=${NODE_ENV:-development}
     restart: always
-    develop:
-      watch:
-        - action: sync
-          path: .
-          target: /app
-          ignore:
-            - node_modules/
-            - .git/
-            - logs/
-            - Dockerfile
-            - docker-compose.yml
-        - action: rebuild
-          path: package.json
-        - action: rebuild
-          path: yarn.lock
-        - action: rebuild
-          path: .env

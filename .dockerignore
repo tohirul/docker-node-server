@@ -1,16 +1,21 @@
 # Ignore dependencies - rebuilt inside container
-node_modules
+**/node_modules
 
 # Ignore version control files
-.git
-.gitignore
+**/.git
+**/.gitignore
 
 # Editor/test-specific files
 **/test.rest
 
 # Optional: Ignore editor configs and logs
-.vscode
-*.log
-npm-debug.log
-yarn-error.log
+**/.vscode
+**/*.log
+**/npm-debug.log
+**/yarn-error.log
 
+# Ignore Docker-related files
+**/project_backups
+**/logs
+**/.DS_Store
+**/*.tar.gz

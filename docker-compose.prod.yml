@@ -1,0 +1,6 @@
+services:
+  app:
+    command: yarn start
+    environment:
+      - NODE_ENV=production
+    restart: always

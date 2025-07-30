@@ -1,18 +1,31 @@
+# Use a lightweight official Node.js image
 FROM node:24.4-alpine3.21
 
+# Define environment variable defaults (optional but useful for fallback)
+ENV CONTAINER_PORT=5000
+
+# Set working directory
 WORKDIR /app
 
-# Copy dependency files first to leverage Docker layer caching
+# Copy only package manifests first for better caching
 COPY package.json yarn.lock ./
 
-# Install dependencies (and optionally clean yarn cache)
-RUN yarn install && yarn cache clean
+# Install dependencies conditionally based on NODE_ENV
+RUN if [ "$NODE_ENV" = "dev" ]; then \
+      yarn install; \
+    else \
+      yarn install --production; \
+    fi && \
+    yarn cache clean
 
-# Copy remaining source code
+# Copy rest of the application
 COPY . .
 
-# Expose the port your app uses (adjust if needed)
+# Install nodemon globally for dev use
+RUN yarn global add nodemon
+
+# Expose port for runtime (can be overridden via --env-file or docker-compose)
 EXPOSE ${CONTAINER_PORT}
 
-# Start the app
-CMD ["yarn", "server"]
+# Start app with nodemon
+CMD ["nodemon"]
